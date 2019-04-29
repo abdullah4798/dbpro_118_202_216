@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c880799c71974cbd8c7972400d8cd00f" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartSchoolModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.AspNetRole" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.AspNetUserClaim" Width="1.5" PointX="10.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.AspNetUserLogin" Width="1.5" PointX="10.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.AspNetUser" Width="1.5" PointX="8" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Class" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.ClassAttendance" Width="1.5" PointX="5.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.ClassTimeTable" Width="1.5" PointX="8" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Complaint" Width="1.5" PointX="5.25" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Course" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Enrollment" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Event" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Exam" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.ExamResult" Width="1.5" PointX="6" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.HostelRequest" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Hostel" Width="1.5" PointX="3.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Management" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.News" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Parent" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.RegisteredCourse" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.RegisteredHostel" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Section" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Student" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.StudentAttendance" Width="1.5" PointX="8" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartSchoolModel.StudentFee" Width="1.5" PointX="3" PointY="37.375" IsExpanded="true" />
+        <AssociationConnector Association="SmartSchoolModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Class_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_ClassAttendance_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_ClassTimeTable_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Enrollment_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Exam_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Section_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_ClassAttendance_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_StudentAttendance_ClassAttendance" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_ClassTimeTable_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_ClassTimeTable_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Complaints_Parent" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Complaints_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Exam_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_RegisteredCourse_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Enrollment_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Enrollment_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_ExamResult_Exam" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_ExamResult_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_HostelRequest_Hostels" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_HostelRequest_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_RegisteredHostels_Hostels" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_Parent_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_RegisteredCourse_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_RegisteredHostels_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_StudentAttendance_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.FK_StudentFee_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartSchoolModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

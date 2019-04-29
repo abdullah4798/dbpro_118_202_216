@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (ViewBag.Msg != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Msg");
+            };
+        </script>
+    }
+}
+<div class="jumbotron">
+    <h1>Welcome to your Account Admin!</h1>
+
+</div>
+
+<div class="row">
+    <h1 style="text-align:center">Knowledge is a key to Success!</h1>
+</div>
+
