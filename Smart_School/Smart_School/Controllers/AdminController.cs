@@ -15,9 +15,9 @@ namespace Smart_School.Controllers
         private const string V = "sohaibarif28@gmail.com";
 
         // GET: Admin
-        public ActionResult Index(string msg)
+        public ActionResult Index()
         {
-            ViewBag.Msg = msg;
+            
             return View();
         }
 
@@ -30,7 +30,7 @@ namespace Smart_School.Controllers
         [AllowAnonymous]
         public ActionResult AddStudent(StudentViewModel model)
         {
-            SmartSchoolEntities ent = new SmartSchoolEntities();
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
             Student s = new Student();
 
             s.Name = model.Name;
@@ -68,10 +68,54 @@ namespace Smart_School.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AllStudent()
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            var StudentList = ent.Students.ToList();
+
+            List<StudentViewModel> List = new List<StudentViewModel>();
+            foreach(var a in StudentList)
+            {
+                StudentViewModel stu = new StudentViewModel();
+                stu.Name = a.Name;
+                stu.Id = a.Id;
+                stu.Contact = a.Contact;
+                stu.RegisterationNumber = a.RegisterationNumber;
+                stu.Email = a.Email;
+                stu.UserName = a.UserName;
+                stu.Password = a.Password;
+                List.Add(stu);
+            }
+
+            return View(List);
+        }
+
+
+        public ActionResult AllParent()
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            var ParentList = ent.Parents.ToList();
+
+            List<ParentViewModel> List = new List<ParentViewModel>();
+            foreach (var a in ParentList)
+            {
+                ParentViewModel par = new ParentViewModel();
+                par.Name = a.Name;
+                par.Contact = a.Name;
+                par.NIC = a.NIC;
+                par.Email = a.Email;
+                par.UserName = a.UserName;
+                par.Password = a.Password;
+                par.Id = a.Id;
+                List.Add(par);
+            }
+
+            return View(List);
+        }
 
         public ActionResult AddParent()
         {
-            SmartSchoolEntities ent = new SmartSchoolEntities();
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
             var listofStudents = ent.Students.ToList();
 
             List<string> dropdownList = new List<string>();
@@ -91,7 +135,7 @@ namespace Smart_School.Controllers
         [AllowAnonymous]
         public ActionResult AddParent(ParentViewModel model)
         {
-            SmartSchoolEntities ent = new SmartSchoolEntities();
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
             Parent s = new Parent();
 
             s.Name = model.Name;
@@ -138,26 +182,86 @@ namespace Smart_School.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Admin/Details/5
-        public ActionResult Details(int id)
+        public ActionResult AddHostel()
         {
             return View();
         }
 
-        // GET: Admin/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [AllowAnonymous]
+        public ActionResult AddHostel(HostelViewModel model)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            Hostel h = new Hostel();
+            h.Name = model.HostelName;
+            h.Location = model.HostelLocation;
+            h.Rent = model.Rent;
+            
+            ent.Hostels.Add(h);
+            ent.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult AllHostel()
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            var allHostels = ent.Hostels.ToList();
+            List<HostelViewModel> list = new List<HostelViewModel>();
+            foreach(var a in allHostels)
+            {
+                HostelViewModel h = new HostelViewModel();
+                h.HostelName = a.Name;
+                h.HostelLocation = a.Location;
+                h.Rent =Convert.ToInt32(a.Rent);
+                h.Id = a.Id;
+                list.Add(h);
+            }
+            return View(list);
+        }
+
+        public ActionResult UpdateHostel(int id)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            var h = ent.Hostels.Where(x => x.Id == id).First();
+            HostelViewModel hostel = new HostelViewModel();
+            hostel.HostelName = h.Name;
+            hostel.Rent =Convert.ToInt32(h.Rent);
+            hostel.HostelLocation = h.Location;
+            return View(hostel);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateHostel(int id,HostelViewModel model)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            Hostel h = ent.Hostels.Where(x=>x.Id == id).First();
+            h.Name = model.HostelName;
+            h.Location = model.HostelLocation;
+            h.Rent = model.Rent;
+
+            
+            ent.SaveChanges();
+
+            return View();
+        }
+
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, HostelViewModel collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                // TODO: Add delete logic here
+                SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+                var hostel = ent.Hostels.Where(x => x.Id == id).First();
+                ent.Entry(hostel).State = System.Data.Entity.EntityState.Deleted;
+                ent.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
             catch

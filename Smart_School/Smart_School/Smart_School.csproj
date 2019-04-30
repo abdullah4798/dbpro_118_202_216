@@ -197,77 +197,59 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Class.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassAttendance.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassTimeTable.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Complaint.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Course.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBSchool.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBSchool.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBSchool.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBSchool.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBSchool.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBSchool.edmx</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Enrollment.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Event.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Exam.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="ExamResult.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hostel.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="HostelRequest.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Management.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClassAttendanceViewModel.cs" />
@@ -291,31 +273,43 @@
     <Compile Include="Models\StudentFeeViewModel.cs" />
     <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="Models\TimeTableViewModel.cs" />
-    <Compile Include="News.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
-    </Compile>
     <Compile Include="Parent.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisteredCourse.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="RegisteredHostel.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Section.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SmartSchool.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartSchool.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SmartSchool.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SmartSchool.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SmartSchool.edmx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Student.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentAttendance.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentFee.cs">
-      <DependentUpon>DBSchool.tt</DependentUpon>
+      <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -323,16 +317,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="DBSchool.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBSchool.edmx</DependentUpon>
-      <LastGenOutput>DBSchool.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DBSchool.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBSchool.edmx</DependentUpon>
-      <LastGenOutput>DBSchool.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -341,13 +325,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="DBSchool.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBSchool.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DBSchool.edmx.diagram">
-      <DependentUpon>DBSchool.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -360,6 +337,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="SmartSchool.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SmartSchool.edmx</DependentUpon>
+      <LastGenOutput>SmartSchool.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SmartSchool.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SmartSchool.edmx</DependentUpon>
+      <LastGenOutput>SmartSchool.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -397,6 +384,19 @@
     <Content Include="Views\Admin\AddStudent.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AddParent.cshtml" />
+    <Content Include="Views\Admin\AddHostel.cshtml" />
+    <Content Include="Views\Admin\AllStudent.cshtml" />
+    <Content Include="Views\Admin\AllHostel.cshtml" />
+    <Content Include="Views\Admin\UpdateHostel.cshtml" />
+    <EntityDeploy Include="SmartSchool.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SmartSchool.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SmartSchool.edmx.diagram">
+      <DependentUpon>SmartSchool.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Admin\AllParent.cshtml" />
+    <Content Include="Views\Admin\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

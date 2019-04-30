@@ -135,16 +135,6 @@
     <NavigationProperty Name="Section" Relationship="Self.FK_Enrollment_Section" FromRole="Enrollment" ToRole="Section" />
     <NavigationProperty Name="Student" Relationship="Self.FK_Enrollment_Student" FromRole="Enrollment" ToRole="Student" />
   </EntityType>
-  <EntityType Name="Event">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Desciption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Date" Type="DateTime" Precision="0" />
-    <Property Name="StartTime" Type="Time" Precision="7" />
-    <Property Name="EndTime" Type="Time" Precision="7" />
-  </EntityType>
   <EntityType Name="Exam">
     <Key>
       <PropertyRef Name="Id" />
@@ -225,7 +215,7 @@
     <Property Name="Contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="NIC" Type="Int32" />
+    <Property Name="NIC" Type="String" />
     <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="StudentId" Type="Int32" />
     <NavigationProperty Name="Complaints" Relationship="Self.FK_Complaints_Parent" FromRole="Parent" ToRole="Complaints" />
@@ -665,7 +655,6 @@
     <EntitySet Name="Complaints" EntityType="Self.Complaint" />
     <EntitySet Name="Courses" EntityType="Self.Course" />
     <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
-    <EntitySet Name="Events" EntityType="Self.Event" />
     <EntitySet Name="Exams" EntityType="Self.Exam" />
     <EntitySet Name="ExamResults" EntityType="Self.ExamResult" />
     <EntitySet Name="HostelRequests" EntityType="Self.HostelRequest" />

@@ -65,7 +65,7 @@
     
 
     <div>
-        @Html.DropDownList("StudentName", (IEnumerable<SelectListItem>)ViewBag.dropdownList, "Select Student", new { @class = "form-control" })
+        @Html.DropDownList("StudentName", (IEnumerable<SelectListItem>)ViewBag.list, "Select Student", new { @class = "form-control" })
     </div>
 
 
@@ -78,5 +78,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Show All Parents", "AllParent")
 </div>

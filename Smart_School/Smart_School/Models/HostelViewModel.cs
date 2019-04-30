@@ -11,11 +11,13 @@ namespace Smart_School.Models
         [Display(Name = "Id")]
         public int Id { get; set; }
 
+
+        public int Rent { get; set; }
         [Display(Name = "Hostel Name")]
         public string HostelName { get; set; }
 
         [Display(Name = "Hostel Location")]
-        public int HostelLocation { get; set; }
+        public string HostelLocation { get; set; }
 
 
     }

@@ -26,7 +26,7 @@ namespace Smart_School.Models
         public string Password { get; set; }
 
         [Display(Name = "CNIC number")]
-        public int NIC { get; set; }
+        public string NIC { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }
