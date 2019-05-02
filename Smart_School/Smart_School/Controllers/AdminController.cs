@@ -90,6 +90,61 @@ namespace Smart_School.Controllers
             return View(List);
         }
 
+        public ActionResult UpdateStudent(int id)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            var s = ent.Students.Where(x => x.Id == id).First();
+            StudentViewModel student = new StudentViewModel();
+            student.Name = s.Name;
+            student.Contact = s.Contact;
+            student.Email = s.Email;
+            student.RegisterationNumber = s.RegisterationNumber;
+            student.UserName = s.UserName;
+            student.Password = s.Password;
+            return View(student);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStudent(int id, StudentViewModel model)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            Student student = ent.Students.Where(x => x.Id == id).First();
+            student.Name = model.Name;
+            student.Contact = model.Contact;
+            student.Email = model.Email;
+            student.RegisterationNumber = model.RegisterationNumber;
+            student.UserName = model.UserName;
+            student.Password = model.Password;
+
+            ent.SaveChanges();
+
+            return RedirectToAction("AllStudent");
+        }
+
+        public ActionResult DeleteStudent(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteStudent(int id, StudentViewModel model)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+                var student = ent.Students.Where(x => x.Id == id).First();
+                ent.Entry(student).State = System.Data.Entity.EntityState.Deleted;
+                ent.SaveChanges();
+
+                return RedirectToAction("AllStudent");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         public ActionResult AllParent()
         {
@@ -182,6 +237,62 @@ namespace Smart_School.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult UpdateParent(int id)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            var p = ent.Parents.Where(x => x.Id == id).First();
+            ParentViewModel parent = new ParentViewModel();
+            parent.Name = p.Name;
+            parent.Contact = p.Contact;
+            parent.Email = p.Email;
+            parent.UserName = p.UserName;
+            parent.Password = p.Password;
+            parent.NIC = p.NIC;
+            return View(parent);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateParent(int id, ParentViewModel model)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            var parent = ent.Parents.Where(x => x.Id == id).First();
+            parent.Name = model.Name;
+            parent.Contact = model.Contact;
+            parent.Email = model.Email;
+            parent.UserName = model.UserName;
+            parent.Password = model.Password;
+            parent.NIC = model.NIC;
+
+            ent.SaveChanges();
+
+            return RedirectToAction("AllParent");
+        }
+
+        public ActionResult DeleteParent(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteParent(int id, ParentViewModel model)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+                SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+                var parent = ent.Parents.Where(x => x.Id == id).First();
+                ent.Entry(parent).State = System.Data.Entity.EntityState.Deleted;
+                ent.SaveChanges();
+
+                return RedirectToAction("AllParent");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         public ActionResult AddHostel()
         {
             return View();
@@ -246,13 +357,13 @@ namespace Smart_School.Controllers
             return View();
         }
 
-        public ActionResult Delete(int id)
+        public ActionResult DeleteHostel(int id)
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, HostelViewModel collection)
+        public ActionResult DeleteHostel(int id, HostelViewModel collection)
         {
             try
             {
@@ -292,26 +403,6 @@ namespace Smart_School.Controllers
             }
         }
 
-        // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

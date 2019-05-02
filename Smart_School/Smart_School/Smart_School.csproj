@@ -396,7 +396,11 @@
       <DependentUpon>SmartSchool.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Admin\AllParent.cshtml" />
-    <Content Include="Views\Admin\Delete.cshtml" />
+    <Content Include="Views\Admin\DeleteHostel.cshtml" />
+    <Content Include="Views\Admin\UpdateStudent.cshtml" />
+    <Content Include="Views\Admin\DeleteStudent.cshtml" />
+    <Content Include="Views\Admin\UpdateParent.cshtml" />
+    <Content Include="Views\Admin\DeleteParent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
