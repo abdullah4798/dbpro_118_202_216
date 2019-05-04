@@ -116,6 +116,14 @@
     <Property Name="SectionId" Type="int" />
     <Property Name="Date" Type="date" />
   </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
   <EntityType Name="Exam">
     <Key>
       <PropertyRef Name="Id" />
@@ -144,6 +152,7 @@
     <Property Name="HostelId" Type="int" />
     <Property Name="StudentId" Type="int" />
     <Property Name="Status" Type="int" />
+    <Property Name="ParentId" Type="int" />
   </EntityType>
   <EntityType Name="Hostels">
     <Key>
@@ -167,6 +176,15 @@
     <Property Name="Password" Type="nvarchar(max)" />
     <Property Name="UserName" Type="nvarchar(max)" />
     <Property Name="Email" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Date" Type="date" />
   </EntityType>
   <EntityType Name="Parent">
     <Key>
@@ -487,6 +505,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HostelRequest_Parent">
+    <End Role="Parent" Type="Self.Parent" Multiplicity="0..1" />
+    <End Role="HostelRequest" Type="Self.HostelRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HostelRequest">
+        <PropertyRef Name="HostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_HostelRequest_Student">
     <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
     <End Role="HostelRequest" Type="Self.HostelRequest" Multiplicity="*" />
@@ -620,11 +650,13 @@
     <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ExamResult" EntityType="Self.ExamResult" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HostelRequest" EntityType="Self.HostelRequest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Hostels" EntityType="Self.Hostels" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Management" EntityType="Self.Management" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RegisteredCourse" EntityType="Self.RegisteredCourse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RegisteredHostels" EntityType="Self.RegisteredHostels" Schema="dbo" store:Type="Tables" />
@@ -710,6 +742,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_HostelRequest_Hostels" Association="Self.FK_HostelRequest_Hostels">
       <End Role="Hostels" EntitySet="Hostels" />
+      <End Role="HostelRequest" EntitySet="HostelRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HostelRequest_Parent" Association="Self.FK_HostelRequest_Parent">
+      <End Role="Parent" EntitySet="Parent" />
       <End Role="HostelRequest" EntitySet="HostelRequest" />
     </AssociationSet>
     <AssociationSet Name="FK_HostelRequest_Student" Association="Self.FK_HostelRequest_Student">

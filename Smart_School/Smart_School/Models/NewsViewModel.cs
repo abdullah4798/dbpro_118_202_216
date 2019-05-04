@@ -11,6 +11,7 @@ namespace Smart_School.Models
         [Display(Name = "Id")]
         public int Id { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Date")]
         public DateTime Date { get; set; }
 

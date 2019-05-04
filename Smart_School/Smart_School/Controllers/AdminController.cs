@@ -12,6 +12,8 @@ namespace Smart_School.Controllers
 {
     public class AdminController : Controller
     {
+        
+
         private const string V = "sohaibarif28@gmail.com";
 
         // GET: Admin
@@ -19,6 +21,51 @@ namespace Smart_School.Controllers
         {
             
             return View();
+        }
+
+        public ActionResult AddNews()
+        {
+            return View();
+
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult AddNews(NewsViewModel model)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            News news = new News();
+            news.Description = model.Description;
+            news.Title = model.Title;
+            news.Date = model.Date;
+
+            ent.News.Add(news);
+            ent.SaveChanges();
+            return RedirectToAction("Account");
+
+        }
+
+        public ActionResult AddEvent()
+        {
+            return View();
+
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult AddEvent(EventViewModel model)
+        {
+            SmartSchoolEntities1 ent = new SmartSchoolEntities1();
+            Event eve = new Event();
+            eve.Description = model.Description;
+            eve.Date = model.Date;
+
+            ent.Events.Add(eve);
+            ent.SaveChanges();
+            return RedirectToAction("Account");
+
         }
 
         public ActionResult AddStudent()

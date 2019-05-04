@@ -15,9 +15,8 @@ namespace Smart_School
     public partial class News
     {
         public int Id { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
         public string Description { get; set; }
         public string Title { get; set; }
-        public Nullable<int> Status { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     }
 }

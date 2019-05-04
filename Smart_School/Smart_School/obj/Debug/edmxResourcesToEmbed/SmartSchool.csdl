@@ -170,6 +170,8 @@
     <Property Name="Status" Type="Int32" />
     <NavigationProperty Name="Hostel" Relationship="Self.FK_HostelRequest_Hostels" FromRole="HostelRequest" ToRole="Hostels" />
     <NavigationProperty Name="Student" Relationship="Self.FK_HostelRequest_Student" FromRole="HostelRequest" ToRole="Student" />
+    <Property Name="ParentId" Type="Int32" />
+    <NavigationProperty Name="Parent" Relationship="SmartSchoolModel.FK_HostelRequest_Parent" FromRole="HostelRequest" ToRole="Parent" />
   </EntityType>
   <EntityType Name="Hostel">
     <Key>
@@ -210,6 +212,7 @@
     <Property Name="StudentId" Type="Int32" />
     <NavigationProperty Name="Complaints" Relationship="Self.FK_Complaints_Parent" FromRole="Parent" ToRole="Complaints" />
     <NavigationProperty Name="Student" Relationship="Self.FK_Parent_Student" FromRole="Parent" ToRole="Student" />
+    <NavigationProperty Name="HostelRequests" Relationship="SmartSchoolModel.FK_HostelRequest_Parent" FromRole="Parent" ToRole="HostelRequest" />
   </EntityType>
   <EntityType Name="RegisteredCourse">
     <Key>
@@ -773,5 +776,40 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Events" EntityType="SmartSchoolModel.Event" />
+    <EntitySet Name="News" EntityType="SmartSchoolModel.News" />
+    <AssociationSet Name="FK_HostelRequest_Parent" Association="SmartSchoolModel.FK_HostelRequest_Parent">
+      <End Role="Parent" EntitySet="Parents" />
+      <End Role="HostelRequest" EntitySet="HostelRequests" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <Association Name="FK_HostelRequest_Parent">
+    <End Type="SmartSchoolModel.Parent" Role="Parent" Multiplicity="0..1" />
+    <End Type="SmartSchoolModel.HostelRequest" Role="HostelRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Parent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HostelRequest">
+        <PropertyRef Name="HostelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

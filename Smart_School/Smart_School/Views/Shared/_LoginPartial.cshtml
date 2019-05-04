@@ -3,7 +3,7 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
 <ul class="nav navbar-nav navbar-right">
     <li>
@@ -12,14 +12,39 @@
     <li><a href="/Admin/AddStudent">Add Student</a></li>
     <li><a href="/Admin/AddParent">Add Parent</a></li>
     <li><a href="/Admin/AddHostel">Add Hostel</a></li>
+    <li><a href="/Admin/AddNews">Add News</a></li>
+    <li><a href="/Admin/AddEvent">Add Events</a></li>
     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
 </ul>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        
-        <li>@Html.ActionLink("Admin Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    if (HelperClass.personLogged != null)
+    {
+        <ul class="nav navbar-nav navbar-right">
+            @if (HelperClass.personLogged == "Student")
+            {
+                <li>@Html.ActionLink("My Account", "Account", "Student", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+            }
+            else
+            {
+                <li>@Html.ActionLink("My Account", "Account", "Parent", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+            }
+            <li>@Html.ActionLink("Log Out", "LogOut", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Parent Log in", "Login", "Parent", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            <li>@Html.ActionLink("Student Log in", "Login", "Student", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+            <li>@Html.ActionLink("Admin Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+
 }

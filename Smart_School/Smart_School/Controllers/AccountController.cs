@@ -18,6 +18,13 @@ namespace Smart_School.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        public ActionResult LogOut()
+        {
+            HelperClass.personLogged = null;
+            HelperClass.LoginUserId = 0;
+            return RedirectToAction("Home", "Index");
+        }
+
         public AccountController()
         {
         }

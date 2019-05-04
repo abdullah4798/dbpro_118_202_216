@@ -57,6 +57,9 @@
         <AssociationConnector Association="SmartSchoolModel.FK_StudentAttendance_Student" ManuallyRouted="false" />
         <AssociationConnector Association="SmartSchoolModel.FK_StudentFee_Student" ManuallyRouted="false" />
         <AssociationConnector Association="SmartSchoolModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SmartSchoolModel.Event" Width="1.5" PointX="6.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SmartSchoolModel.News" Width="1.5" PointX="8.375" PointY="6.75" />
+        <AssociationConnector Association="SmartSchoolModel.FK_HostelRequest_Parent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SmartSchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SmartSchoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -121,6 +121,14 @@
           <Property Name="SectionId" Type="int" />
           <Property Name="Date" Type="date" />
         </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
         <EntityType Name="Exam">
           <Key>
             <PropertyRef Name="Id" />
@@ -149,6 +157,7 @@
           <Property Name="HostelId" Type="int" />
           <Property Name="StudentId" Type="int" />
           <Property Name="Status" Type="int" />
+          <Property Name="ParentId" Type="int" />
         </EntityType>
         <EntityType Name="Hostels">
           <Key>
@@ -172,6 +181,15 @@
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="UserName" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
         </EntityType>
         <EntityType Name="Parent">
           <Key>
@@ -492,6 +510,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HostelRequest_Parent">
+          <End Role="Parent" Type="Self.Parent" Multiplicity="0..1" />
+          <End Role="HostelRequest" Type="Self.HostelRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HostelRequest">
+              <PropertyRef Name="HostelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HostelRequest_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="HostelRequest" Type="Self.HostelRequest" Multiplicity="*" />
@@ -625,11 +655,13 @@
           <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExamResult" EntityType="Self.ExamResult" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HostelRequest" EntityType="Self.HostelRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hostels" EntityType="Self.Hostels" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Management" EntityType="Self.Management" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegisteredCourse" EntityType="Self.RegisteredCourse" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegisteredHostels" EntityType="Self.RegisteredHostels" Schema="dbo" store:Type="Tables" />
@@ -717,6 +749,10 @@
             <End Role="Hostels" EntitySet="Hostels" />
             <End Role="HostelRequest" EntitySet="HostelRequest" />
           </AssociationSet>
+          <AssociationSet Name="FK_HostelRequest_Parent" Association="Self.FK_HostelRequest_Parent">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="HostelRequest" EntitySet="HostelRequest" />
+          </AssociationSet>
           <AssociationSet Name="FK_HostelRequest_Student" Association="Self.FK_HostelRequest_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="HostelRequest" EntitySet="HostelRequest" />
@@ -758,8 +794,7 @@
             <End Role="StudentFee" EntitySet="StudentFee" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SmartSchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -933,6 +968,8 @@
           <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="Hostel" Relationship="Self.FK_HostelRequest_Hostels" FromRole="HostelRequest" ToRole="Hostels" />
           <NavigationProperty Name="Student" Relationship="Self.FK_HostelRequest_Student" FromRole="HostelRequest" ToRole="Student" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="Parent" Relationship="SmartSchoolModel.FK_HostelRequest_Parent" FromRole="HostelRequest" ToRole="Parent" />
         </EntityType>
         <EntityType Name="Hostel">
           <Key>
@@ -973,6 +1010,7 @@
           <Property Name="StudentId" Type="Int32" />
           <NavigationProperty Name="Complaints" Relationship="Self.FK_Complaints_Parent" FromRole="Parent" ToRole="Complaints" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Parent_Student" FromRole="Parent" ToRole="Student" />
+          <NavigationProperty Name="HostelRequests" Relationship="SmartSchoolModel.FK_HostelRequest_Parent" FromRole="Parent" ToRole="HostelRequest" />
         </EntityType>
         <EntityType Name="RegisteredCourse">
           <Key>
@@ -1536,7 +1574,42 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Events" EntityType="SmartSchoolModel.Event" />
+          <EntitySet Name="News" EntityType="SmartSchoolModel.News" />
+          <AssociationSet Name="FK_HostelRequest_Parent" Association="SmartSchoolModel.FK_HostelRequest_Parent">
+            <End Role="Parent" EntitySet="Parents" />
+            <End Role="HostelRequest" EntitySet="HostelRequests" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_HostelRequest_Parent">
+          <End Type="SmartSchoolModel.Parent" Role="Parent" Multiplicity="0..1" />
+          <End Type="SmartSchoolModel.HostelRequest" Role="HostelRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HostelRequest">
+              <PropertyRef Name="HostelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1684,6 +1757,7 @@
           <EntitySetMapping Name="HostelRequests">
             <EntityTypeMapping TypeName="SmartSchoolModel.HostelRequest">
               <MappingFragment StoreEntitySet="HostelRequest">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="HostelId" ColumnName="HostelId" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -1802,6 +1876,25 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="SmartSchoolModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="SmartSchoolModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

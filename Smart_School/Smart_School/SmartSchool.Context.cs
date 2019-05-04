@@ -48,5 +48,7 @@ namespace Smart_School
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<StudentAttendance> StudentAttendances { get; set; }
         public virtual DbSet<StudentFee> StudentFees { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }

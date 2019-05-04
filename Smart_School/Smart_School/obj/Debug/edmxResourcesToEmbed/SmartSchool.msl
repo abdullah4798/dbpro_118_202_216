@@ -142,6 +142,7 @@
     <EntitySetMapping Name="HostelRequests">
       <EntityTypeMapping TypeName="SmartSchoolModel.HostelRequest">
         <MappingFragment StoreEntitySet="HostelRequest">
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HostelId" ColumnName="HostelId" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
@@ -260,5 +261,24 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="SmartSchoolModel.Event">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="SmartSchoolModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

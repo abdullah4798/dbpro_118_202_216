@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -224,6 +227,8 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParentController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Course.cs">
       <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
@@ -231,6 +236,9 @@
       <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Enrollment.cs">
+      <DependentUpon>SmartSchool.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Event.cs">
       <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
     <Compile Include="Exam.cs">
@@ -242,6 +250,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HelperClass.cs" />
     <Compile Include="Hostel.cs">
       <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
@@ -257,6 +266,7 @@
     <Compile Include="Models\ComplainViewModel.cs" />
     <Compile Include="Models\CourseViewModel.cs" />
     <Compile Include="Models\EnrollmentViewModel.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\ExamResultViewModel.cs" />
     <Compile Include="Models\ExamViewModel.cs" />
     <Compile Include="Models\HostelRequestViewModel.cs" />
@@ -273,6 +283,9 @@
     <Compile Include="Models\StudentFeeViewModel.cs" />
     <Compile Include="Models\StudentViewModel.cs" />
     <Compile Include="Models\TimeTableViewModel.cs" />
+    <Compile Include="News.cs">
+      <DependentUpon>SmartSchool.tt</DependentUpon>
+    </Compile>
     <Compile Include="Parent.cs">
       <DependentUpon>SmartSchool.tt</DependentUpon>
     </Compile>
@@ -401,6 +414,16 @@
     <Content Include="Views\Admin\DeleteStudent.cshtml" />
     <Content Include="Views\Admin\UpdateParent.cshtml" />
     <Content Include="Views\Admin\DeleteParent.cshtml" />
+    <Content Include="Views\Student\Login.cshtml" />
+    <Content Include="Views\Student\Account.cshtml" />
+    <Content Include="Views\Parent\Account.cshtml" />
+    <Content Include="Views\Parent\Login.cshtml" />
+    <Content Include="Views\Student\ViewNews.cshtml" />
+    <Content Include="Views\Parent\ViewNews.cshtml" />
+    <Content Include="Views\Student\ViewEvents.cshtml" />
+    <Content Include="Views\Parent\ViewEvents.cshtml" />
+    <Content Include="Views\Admin\AddNews.cshtml" />
+    <Content Include="Views\Admin\AddEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -420,6 +443,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

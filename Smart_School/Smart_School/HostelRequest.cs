@@ -18,8 +18,10 @@ namespace Smart_School
         public Nullable<int> HostelId { get; set; }
         public Nullable<int> StudentId { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<int> ParentId { get; set; }
     
         public virtual Hostel Hostel { get; set; }
         public virtual Student Student { get; set; }
+        public virtual Parent Parent { get; set; }
     }
 }

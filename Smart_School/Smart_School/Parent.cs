@@ -18,6 +18,7 @@ namespace Smart_School
         public Parent()
         {
             this.Complaints = new HashSet<Complaint>();
+            this.HostelRequests = new HashSet<HostelRequest>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,7 @@ namespace Smart_School
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Complaint> Complaints { get; set; }
         public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HostelRequest> HostelRequests { get; set; }
     }
 }
