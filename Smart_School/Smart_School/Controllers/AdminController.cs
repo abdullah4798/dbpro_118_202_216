@@ -1,4 +1,5 @@
-﻿using Smart_School.Models;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Smart_School.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,102 @@ namespace Smart_School.Controllers
         
 
         private const string V = "sohaibarif28@gmail.com";
+
+
+        public ActionResult exportReportStudent()
+        {
+            SmartSchoolEntities1 db = new SmartSchoolEntities1();
+
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CrystalReport.rpt"));
+            rd.SetDataSource(db.Students.ToList());
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "StudentList.pdf");
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public ActionResult exportReportParent()
+        {
+            SmartSchoolEntities1 db = new SmartSchoolEntities1();
+
+            ReportDocument rd = new ReportDocument();
+            var ParentList = db.Parents.ToList();
+
+            List<ParentViewModel> List = new List<ParentViewModel>();
+            foreach (var a in ParentList)
+            {
+                ParentViewModel par = new ParentViewModel();
+                par.Name = a.Name;
+                par.Contact = a.Contact;
+                par.NIC = a.NIC;
+                par.Email = a.Email;
+                par.UserName = a.UserName;
+                par.Password = a.Password;
+                par.Id = a.Id;
+                List.Add(par);
+            }
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CrystalReport1.rpt"));
+            rd.SetDataSource(List);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "ParentList.pdf");
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public ActionResult exportReportHostel()
+        {
+            SmartSchoolEntities1 db = new SmartSchoolEntities1();
+
+            ReportDocument rd = new ReportDocument();
+            var allHostels = db.Hostels.ToList();
+            List<HostelViewModel> list = new List<HostelViewModel>();
+            foreach (var a in allHostels)
+            {
+                HostelViewModel h = new HostelViewModel();
+                h.HostelName = a.Name;
+                h.HostelLocation = a.Location;
+                h.Rent = Convert.ToInt32(a.Rent);
+                h.Id = a.Id;
+                list.Add(h);
+            }
+            rd.Load(Path.Combine(Server.MapPath("~/Reports"), "CrystalReport2.rpt"));
+            rd.SetDataSource(list);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "HostelList.pdf");
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
         // GET: Admin
         public ActionResult Index()
@@ -203,7 +300,7 @@ namespace Smart_School.Controllers
             {
                 ParentViewModel par = new ParentViewModel();
                 par.Name = a.Name;
-                par.Contact = a.Name;
+                par.Contact = a.Contact;
                 par.NIC = a.NIC;
                 par.Email = a.Email;
                 par.UserName = a.UserName;

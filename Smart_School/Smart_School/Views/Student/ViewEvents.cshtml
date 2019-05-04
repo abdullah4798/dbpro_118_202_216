@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<Smart_School.Models.EventViewModel>
 
 @{
-    ViewBag.Title = "ViewEvents";
+                /**/
+
+                ViewBag.Title = "ViewEvents";
 }
 
 <h2>ViewEvents</h2>
 
+<a class="btn btn-success" href="@Url.Action("exportReportEvents")">Download PDF</a>
 
 <table class="table">
     <tr>
@@ -18,17 +21,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        
-        
-    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+
+
+</tr>
 }
 
 </table>

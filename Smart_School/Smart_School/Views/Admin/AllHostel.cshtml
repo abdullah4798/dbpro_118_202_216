@@ -6,9 +6,8 @@
 
 <h2>AllHostel</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<a class="btn btn-success" href="@Url.Action("exportReportHostel")">Download Report</a>
+
 <table class="table">
     <tr>
         <th>
@@ -23,22 +22,23 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HostelName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HostelLocation)
-        </td>
-        <td>
-            @Html.ActionLink("Update Hostel", "UpdateHostel", new { id=item.Id }) |
-            @Html.ActionLink("Delete Hostel", "DeleteHostel", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HostelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HostelLocation)
+            </td>
+            <td>
+                @Html.ActionLink("Update Hostel", "UpdateHostel", new { id = item.Id }) |
+                @Html.ActionLink("Delete Hostel", "DeleteHostel", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
